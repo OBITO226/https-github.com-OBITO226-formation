@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formations — Pack Office & IA</title>
+  <meta name="description" content="Catalogue des formations Pack Office et IA avec supports, cas pratiques et évaluations." />
+  <style>
+    /* --- RESET DE BASE --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* --- NAVBAR --- */
+    .navbar {
+      background: #0077cc;
+      color: white;
+      padding: 0.8rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .navbar-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo a {
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    .nav-links li a {
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #ffdd57;
+    }
+
+    /* --- CATALOGUE --- */
+    .catalogue-section {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    .catalogue-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #0077cc;
+    }
+
+    .section-desc {
+      color: #555;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+
+    .catalogue-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+      margin-top: 0.8rem;
+      color: #222;
+      font-size: 1.2rem;
+    }
+
+    .card p.meta {
+      color: #555;
+      margin: 0.5rem 0 1rem;
+      font-size: 0.95rem;
+    }
+
+    .card ul {
+      padding: 0;
+      list-style: none;
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    .card ul li {
+      margin-bottom: 0.3rem;
+    }
+
+    .badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 50px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .badge-office {
+      background: #0077cc;
+    }
+
+    .badge-ia {
+      background: #ff5722;
+    }
+
+    .badge-ia-excel {
+      background: #4caf50;
+    }
+
+    .cta {
+      margin-top: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #0077cc;
+      color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #005fa3;
+    }
+
+    /* --- SECTIONS SUPPLÉMENTAIRES --- */
+    .extra-section {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 1rem;
+      text-align: center;
+      background: #f9f9f9;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .extra-section h2 {
+      color: #0077cc;
+      margin-bottom: 0.5rem;
+    }
+
+    .extra-section p {
+      color: #555;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      text-align: center;
+      background: #0077cc;
+      color: white;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <div class="logo">
+        <a href="#">📘 
+Formations — Pack Office & IA</a>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="formation.html">Accueil</a></li>
+          <li><a href="#catalogue">Catalogue</a></li>
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CATALOGUE -->
+  <section id="catalogue" class="catalogue-section">
+    <div class="catalogue-header">
+      <h2 class="section-title">📚 Catalogue des modules</h2>
+      <p class="section-desc">
+        Choisissez votre niveau et avancez à votre rythme.  
+        Chaque module inclut des supports, des cas pratiques et une évaluation.
+      </p>
+    </div>
+
+    <div class="catalogue-grid">
+      <!-- Word -->
+      <article class="card">
+        <span class="badge badge-office">Pack Office</span>
+        <h3>Word — de zéro à pro</h3>
+        <p class="meta">Styles, sommaires automatiques, publipostage, modèles, macros simples.</p>
+        <ul>
+          <li><strong>Niveaux :</strong> Débutant → Avancé</li>
+          <li><strong>Durée :</strong> 6 à 12 h</li>
+          <li><strong>Livrables :</strong> modèles & checklists</li>
+        </ul>
+        <div class="cta">
+          <a class="btn" href="pdf/Word 2016.pdf" download="Formation_Word.pdf">Télécharger le contenu</a>
+        </div>
+      </article>
+
+      <!-- Excel -->
+      <article class="card">
+        <span class="badge badge-office">Pack Office</span>
+        <h3>Excel — analyse & tableaux de bord</h3>
+        <p class="meta">Fonctions, TCD, Power Query, graphiques dynamiques, introduction à Power Pivot.</p>
+        <ul>
+          <li><strong>Niveaux :</strong> Débutant → Expert</li>
+          <li><strong>Durée :</strong> 8 à 20 h</li>
+          <li><strong>Livrables :</strong> fichiers d’exercices</li>
+        </ul>
+        <div class="cta">
+          <a class="btn" href="pdf/EXCEL TUTO1516 12 04 2018.pdf" download="Formation_Excel.pdf">Télécharger le contenu</a>
+        </div>
+      </article>
+
+      <!-- PowerPoint -->
+      <article class="card">
+        <span class="badge badge-office">Pack Office</span>
+        <h3>PowerPoint — storytelling & design</h3>
+        <p class="meta">Masques, grilles, animation propre, pitch deck, présentations percutantes.</p>
+        <ul>
+          <li><strong>Niveaux :</strong> Tous niveaux</li>
+          <li><strong>Durée :</strong> 6 à 10 h</li>
+          <li><strong>Livrables :</strong> thèmes & templates</li>
+        </ul>
+        <div class="cta">
+          <a class="btn" href="pdf/PowerPoint 2016.pdf" download="Formation_PowerPoint.pdf">Télécharger le contenu</a>
+        </div>
+      </article>
+
+      <!-- IA Base -->
+      <article class="card">
+        <span class="badge badge-ia">IA</span>
+        <h3>IA — fondamentaux & usages concrets</h3>
+        <p class="meta">Comprendre les modèles, limites, sécurité, cas d’usage en bureautique et business.</p>
+        <ul>
+          <li><strong>Niveaux :</strong> Initiation</li>
+          <li><strong>Durée :</strong> 4 à 8 h</li>
+          <li><strong>Livrables :</strong> fiches mémo</li>
+        </ul>
+        <div class="cta">
+          <a class="btn" href="pdf/0165-formation-intelligence-artificielle.pdf" download="Formation_IA_Fondamentaux.pdf">Télécharger le contenu</a>
+        </div>
+      </article>
+
+      <!-- Prompt -->
+      <article class="card">
+        <span class="badge badge-ia">IA</span>
+        <h3>Prompt engineering — productivité</h3>
+        <p class="meta">Techniques de prompts, structuration, itérations, décrochage de tâches complexes.</p>
+        <ul>
+          <li><strong>Niveaux :</strong> Débutant → Intermédiaire</li>
+          <li><strong>Durée :</strong> 4 à 8 h</li>
+          <li><strong>Livrables :</strong> bibliothèque de prompts</li>
+        </ul>
+        <div class="cta">
+          <a class="btn" href="https://formationsgratuites.com/fondamentaux-de-lintelligence-artificielle/" download="Formation_Prompt_Engineering.pdf">Télécharger le contenu</a>
+        </div>
+      </article>
+
+      <!-- IA + Excel -->
+      <article class="card">
+        <span class="badge badge-ia-excel">IA + Excel</span>
+        <h3>IA pour Excel — analyse augmentée</h3>
+        <p class="meta">Nettoyage, synthèse, génération d’insights, idées de graphiques, documentation.</p>
+        <ul>
+          <li><strong>Niveaux :</strong> Intermédiaire</li>
+          <li><strong>Durée :</strong> 6 à 10 h</li>
+          <li><strong>Livrables :</strong> notebooks & cas</li>
+        </ul>
+        <div class="cta">
+          <a class="btn" href="pdf/EXCEL TUTO1516 12 04 2018.pdf" download="Formation_IA_Excel.pdf">Télécharger le contenu</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="extra-section">
+    <h2>À propos</h2>
+    <p>
+      Nous proposons des formations interactives pour tous les niveaux, avec des supports pratiques
+      et un suivi personnalisé pour garantir votre réussite.
+    </p>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="extra-section">
+    <h2>Contact</h2>
+    <p>📧 Email : <a href="mailto:reneouedraogo50@gmail.com">reneouedraogo50@gmail.com</a></p>
+    <p>📞 Téléphone : +226 54 73 84 28</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 Formations IA & Bureautique. Tous droits réservés.
+  </footer>
+</body>
+</html>

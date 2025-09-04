@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demander un Devis - Formations Pack Office & IA</title>
+  <style>
+    /* Styles de la navbar */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow);
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .navbar-logo {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .navbar-menu {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    
+    .navbar-link {
+      color: var(--gray-700);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .navbar-link:hover {
+      color: var(--primary);
+    }
+    
+    .navbar-contact {
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .navbar-contact:hover {
+      background: var(--primary-dark);
+    }
+    
+    /* Ajustement du contenu principal pour la navbar */
+    body {
+      padding-top: 80px; /* Espace pour la navbar fixe */
+    }
+
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #7c3aed;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --radius: 8px;
+      --radius-lg: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .devis-container {
+      background: white;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      max-width: 800px;
+      overflow: hidden;
+    }
+
+    .devis-header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .devis-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .devis-header p {
+      opacity: 0.9;
+      font-size: 1.1rem;
+    }
+
+    .devis-progress {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem;
+      background: var(--gray-100);
+      position: relative;
+    }
+
+    .progress-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid var(--gray-300);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--gray-500);
+      transition: var(--transition);
+    }
+
+    .step-active .step-number {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .step-completed .step-number {
+      background: var(--success);
+      border-color: var(--success);
+      color: white;
+    }
+
+    .step-label {
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      font-weight: 500;
+    }
+
+    .step-active .step-label {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .progress-bar {
+      position: absolute;
+      top: 50%;
+      left: 50px;
+      right: 50px;
+      height: 3px;
+      background: var(--gray-300);
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      transition: var(--transition);
+      width: 0%;
+    }
+
+    .devis-content {
+      padding: 2rem;
+    }
+
+    .form-step {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .form-step.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--gray-700);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 2px solid var(--gray-300);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .form-control.error {
+      border-color: var(--error);
+    }
+
+    .error-message {
+      color: var(--error);
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .checkbox-item input {
+      width: 18px;
+      height: 18px;
+    }
+
+    .checkbox-item label {
+      margin: 0;
+      font-weight: normal;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .devis-navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      background: var(--gray-100);
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .btn {
+      padding: 0.875rem 1.5rem;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: var(--gray-300);
+      color: var(--gray-700);
+    }
+
+    .btn-secondary:hover {
+      background: var(--gray-400);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--gray-300);
+      color: var(--gray-600);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--gray-400);
+      background: var(--gray-100);
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #0da271;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      background: var(--gray-100);
+      border-radius: var(--radius);
+      margin-bottom: 0.5rem;
+    }
+
+    .summary-label {
+      font-weight: 500;
+      color: var(--gray-600);
+    }
+
+    .summary-value {
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+
+    .success-message {
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .success-icon {
+      font-size: 4rem;
+      color: var(--success);
+      margin-bottom: 1rem;
+    }
+
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    .whatsapp-info {
+      background: #25D366;
+      color: white;
+      padding: 1rem;
+      border-radius: var(--radius);
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .success-actions {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .navbar-menu {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      body {
+        padding-top: 120px; /* Plus d'espace pour la navbar empilée */
+      }
+      
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .checkbox-group {
+        grid-template-columns: 1fr;
+      }
+      
+      .devis-progress {
+        padding: 1.5rem;
+      }
+      
+      .progress-bar {
+        left: 30px;
+        right: 30px;
+      }
+      
+      .step-label {
+        font-size: 0.75rem;
+      }
+      
+      .success-actions {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar-brand {
+        font-size: 1.2rem;
+      }
+      
+      .navbar-menu {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      .devis-header {
+        padding: 1.5rem;
+      }
+      
+      .devis-content {
+        padding: 1.5rem;
+      }
+      
+      .devis-navigation {
+        padding: 1rem 1.5rem;
+      }
+      
+      .btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barre de navigation ajoutée ici -->
+  <nav class="navbar">
+    <a href="#" class="navbar-brand">
+      <svg class="navbar-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+        <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+        <path d="M2 2l7.586 7.586"></path>
+        <circle cx="11" cy="11" r="2"></circle>
+      </svg>
+      Formations — Pack Office & IA
+    </a>
+    
+    <div class="navbar-menu">
+      <a href="formation.html" class="navbar-link">Accueil</a>
+      <a href="https://wa.me/22654738428" class="navbar-contact">Nous contacter</a>
+    </div>
+  </nav>
+
+  <div class="devis-container">
+    <div class="devis-header">
+      <h1>Demander un Devis</h1>
+      <p>Remplissez ce formulaire pour recevoir une proposition personnalisée</p>
+    </div>
+
+    <div class="devis-progress">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-step step-active" data-step="1">
+        <div class="step-number">1</div>
+        <div class="step-label">Informations</div>
+      </div>
+      <div class="progress-step" data-step="2">
+        <div class="step-number">2</div>
+        <div class="step-label">Formation</div>
+      </div>
+      <div class="progress-step" data-step="3">
+        <div class="step-number">3</div>
+        <div class="step-label">Besoin</div>
+      </div>
+      <div class="progress-step" data-step="4">
+        <div class="step-number">4</div>
+        <div class="step-label">Récapitulatif</div>
+      </div>
+    </div>
+
+    <div class="devis-content">
+      <!-- Étape 1: Informations personnelles -->
+      <div class="form-step active" data-step="1">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" class="form-control" required>
+            <div class="error-message" id="prenomError">Veuillez saisir votre prénom</div>
+          </div>
+          <div class="form-group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" class="form-control" required>
+            <div class="error-message" id="nomError">Veuillez saisir votre nom</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+            <div class="error-message" id="emailError">Veuillez saisir un email valide</div>
+          </div>
+          <div class="form-group">
+            <label for="telephone">Téléphone *</label>
+            <input type="tel" id="telephone" name="telephone" class="form-control" required>
+            <div class="error-message" id="telephoneError">Veuillez saisir un numéro valide</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="entreprise">Entreprise/Organisation</label>
+          <input type="text" id="entreprise" name="entreprise" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="poste">Poste occupé</label>
+          <input type="text" id="poste" name="poste" class="form-control">
+        </div>
+      </div>
+
+      <!-- Étape 2: Choix de formation -->
+      <div class="form-step" data-step="2">
+        <div class="form-group">
+          <label>Type de formation *</label>
+          <select id="typeFormation" name="typeFormation" class="form-control" required>
+            <option value="">Sélectionnez une option</option>
+            <option value="individuelle">Formation individuelle</option>
+            <option value="groupe">Formation en groupe</option>
+            <option value="entreprise">Formation en entreprise</option>
+            <option value="sur-mesure">Formation sur-mesure</option>
+          </select>
+          <div class="error-message" id="typeFormationError">Veuillez sélectionner un type de formation</div>
+        </div>
+
+        <div class="form-group">
+          <label>Modules souhaités *</label>
+          <div class="checkbox-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="module-word" name="modules" value="Word">
+              <label for="module-word">Word</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="module-excel" name="modules" value="Excel">
+              <label for="module-excel">Excel</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="module-powerpoint" name="modules" value="PowerPoint">
+              <label for="module-powerpoint">PowerPoint</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="module-ia" name="modules" value="IA">
+              <label for="module-ia">Intelligence Artificielle</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="module-prompt" name="modules" value="Prompt">
+              <label for="module-prompt">Prompt Engineering</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="module-automation" name="modules" value="Automation">
+              <label for="module-automation">Automatisation</label>
+            </div>
+          </div>
+          <div class="error-message" id="modulesError">Veuillez sélectionner au moins un module</div>
+        </div>
+
+        <div class="form-group">
+          <label for="niveau">Niveau des participants *</label>
+          <select id="niveau" name="niveau" class="form-control" required>
+            <option value="">Sélectionnez un niveau</option>
+            <option value="debutant">Débutant</option>
+            <option value="intermediaire">Intermédiaire</option>
+            <option value="avance">Avancé</option>
+            <option value="mixte">Niveaux mixte</option>
+          </select>
+          <div class="error-message" id="niveauError">Veuillez sélectionner un niveau</div>
+        </div>
+      </div>
+
+      <!-- Étape 3: Besoins spécifiques -->
+      <div class="form-step" data-step="3">
+        <div class="form-group">
+          <label for="effectif">Nombre de participants *</label>
+          <input type="number" id="effectif" name="effectif" class="form-control" min="1" required>
+          <div class="error-message" id="effectifError">Veuillez saisir un nombre valide</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dateDebut">Date souhaitée de début</label>
+            <input type="date" id="dateDebut" name="dateDebut" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="duree">Durée estimée (heures)</label>
+            <input type="number" id="duree" name="duree" class="form-control" min="1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="modalite">Modalité préférée *</label>
+          <select id="modalite" name="modalite" class="form-control" required>
+            <option value="">Sélectionnez une option</option>
+            <option value="presentiel">Présentiel</option>
+            <option value="distanciel">Distanciel</option>
+            <option value="hybride">Hybride</option>
+          </select>
+          <div class="error-message" id="modaliteError">Veuillez sélectionner une modalité</div>
+        </div>
+
+        <div class="form-group">
+          <label for="objectifs">Objectifs spécifiques</label>
+          <textarea id="objectifs" name="objectifs" class="form-control" placeholder="Décrivez vos objectifs principaux..."></textarea>
+        </div>
+      </div>
+
+      <!-- Étape 4: Récapitulatif -->
+      <div class="form-step" data-step="4">
+        <div class="form-group">
+          <h3 style="margin-bottom: 1rem;">Récapitulatif de votre demande</h3>
+          
+          <div class="summary-item">
+            <span class="summary-label">Nom complet:</span>
+            <span class="summary-value" id="recapNom"></span>
+          </div>
+          
+          <div class="summary-item">
+            <span class="summary-label">Email:</span>
+            <span class="summary-value" id="recapEmail"></span>
+          </div>
+          
+          <div class="summary-item">
+            <span class="summary-label">Téléphone:</span>
+            <span class="summary-value" id="recapTelephone"></span>
+          </div>
+          
+          <div class="summary-item">
+            <span class="summary-label">Type de formation:</span>
+            <span class="summary-value" id="recapTypeFormation"></span>
+          </div>
+          
+          <div class="summary-item">
+            <span class="summary-label">Modules:</span>
+            <span class="summary-value" id="recapModules"></span>
+          </div>
+          
+          <div class="summary-item">
+            <span class="summary-label">Nombre de participants:</span>
+            <span class="summary-value" id="recapEffectif"></span>
+          </div>
+          
+          <div class="summary-item">
+            <span class="summary-label">Modalité:</span>
+            <span class="summary-value" id="recapModalite"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="commentaires">Commentaires supplémentaires</label>
+          <textarea id="commentaires" name="commentaires" class="form-control" placeholder="Informations complémentaires..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="confidentialite" name="confidentialite" required>
+            <label for="confidentialite">J'accepte la politique de confidentialité *</label>
+          </div>
+          <div class="error-message" id="confidentialiteError">Vous devez accepter la politique de confidentialité</div>
+        </div>
+
+        <div class="whatsapp-info">
+          <strong>📱 Votre demande sera envoyée sur WhatsApp</strong>
+          <p>Nous vous contacterons rapidement sur le numéro fourni</p>
+        </div>
+      </div>
+
+      <!-- Message de succès -->
+      <div class="form-step success-message" data-step="5">
+        <div class="success-icon">✅</div>
+        <h2>Demande envoyée avec succès !</h2>
+        <p>Votre demande a été envoyée sur WhatsApp. Notre équipe vous contactera dans les plus brefs délais.</p>
+        <p style="margin-top: 1rem; color: var(--gray-600);">
+          Référence: <strong id="referenceNumber"></strong>
+        </p>
+        <div class="whatsapp-info" style="margin-top: 2rem;">
+          <strong>📞 Nous vous contacterons sur WhatsApp</strong>
+          <p>Restez à l'écoute de vos messages</p>
+        </div>
+        
+        <div class="success-actions">
+          <button class="btn btn-success" onclick="window.location.href='https://votre-site.com'">
+            🏠 Retour à l'accueil
+          </button>
+          <button class="btn btn-outline" onclick="devisForm.resetForm()">
+            📋 Faire une nouvelle demande
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="devis-navigation">
+      <button type="button" class="btn btn-outline" id="btnPrev" style="display: none;">
+        ← Précédent
+      </button>
+      <button type="button" class="btn btn-primary" id="btnNext">
+        Suivant →
+      </button>
+      <button type="button" class="btn btn-primary" id="btnSubmit" style="display: none;">
+        <span id="submitText">Envoyer sur WhatsApp</span>
+        <span id="submitLoading" class="loading" style="display: none;"></span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    class DevisForm {
+      constructor() {
+        this.currentStep = 1;
+        this.totalSteps = 4;
+        this.formData = {};
+        this.init();
+      }
+
+      init() {
+        this.setupEventListeners();
+        this.updateProgress();
+      }
+
+      setupEventListeners() {
+        document.getElementById('btnNext').addEventListener('click', () => this.nextStep());
+        document.getElementById('btnPrev').addEventListener('click', () => this.prevStep());
+        document.getElementById('btnSubmit').addEventListener('click', () => this.submitForm());
+        
+        // Validation en temps réel
+        document.querySelectorAll('.form-control').forEach(input => {
+          input.addEventListener('blur', () => this.validateField(input));
+        });
+      }
+
+      validateField(field) {
+        const errorElement = document.getElementById(field.id + 'Error');
+        
+        if (field.hasAttribute('required') && !field.value.trim()) {
+          this.showError(field, errorElement, 'Ce champ est requis');
+          return false;
+        }
+
+        if (field.type === 'email' && field.value) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(field.value)) {
+            this.showError(field, errorElement, 'Email invalide');
+            return false;
+          }
+        }
+
+        if (field.type === 'tel' && field.value) {
+          const phoneRegex = /^[+]?[0-9\s\-\(\)]{10,}$/;
+          if (!phoneRegex.test(field.value)) {
+            this.showError(field, errorElement, 'Numéro de téléphone invalide');
+            return false;
+          }
+        }
+
+        this.hideError(field, errorElement);
+        return true;
+      }
+
+      showError(field, errorElement, message) {
+        field.classList.add('error');
+        errorElement.textContent = message;
+        errorElement.classList.add('show');
+      }
+
+      hideError(field, errorElement) {
+        field.classList.remove('error');
+        errorElement.classList.remove('show');
+      }
+
+      validateStep(step) {
+        let isValid = true;
+        const stepElement = document.querySelector(`.form-step[data-step="${step}"]`);
+        
+        // Valider tous les champs requis
+        const requiredFields = stepElement.querySelectorAll('[required]');
+        for (const field of requiredFields) {
+          if (!this.validateField(field)) {
+            isValid = false;
+          }
+        }
+
+        // Validation spécifique pour les cases à cocher (étape 2)
+        if (step === 2) {
+          const modules = document.querySelectorAll('input[name="modules"]:checked');
+          if (modules.length === 0) {
+            this.showError(document.querySelector('input[name="modules"]'), 
+                         document.getElementById('modulesError'), 
+                         'Sélectionnez au moins un module');
+            isValid = false;
+          } else {
+            this.hideError(document.querySelector('input[name="modules"]'), 
+                          document.getElementById('modulesError'));
+          }
+        }
+
+        return isValid;
+      }
+
+      nextStep() {
+        if (!this.validateStep(this.currentStep)) {
+          return;
+        }
+
+        this.saveStepData(this.currentStep);
+        
+        if (this.currentStep < this.totalSteps) {
+          this.currentStep++;
+          this.updateUI();
+        }
+      }
+
+      prevStep() {
+        if (this.currentStep > 1) {
+          this.currentStep--;
+          this.updateUI();
+        }
+      }
+
+      saveStepData(step) {
+        const stepElement = document.querySelector(`.form-step[data-step="${step}"]`);
+        
+        // Récupérer les données des champs
+        const inputs = stepElement.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+          if (input.type === 'checkbox') {
+            if (input.checked) {
+              this.formData[input.name] = this.formData[input.name] || [];
+              this.formData[input.name].push(input.value);
+            }
+          } else {
+            this.formData[input.name] = input.value;
+          }
+        });
+      }
+
+      updateUI() {
+        // Masquer toutes les étapes
+        document.querySelectorAll('.form-step').forEach(step => {
+          step.classList.remove('active');
+        });
+
+        // Afficher l'étape courante
+        const currentStepElement = document.querySelector(`.form-step[data-step="${this.currentStep}"]`);
+        if (currentStepElement) {
+          currentStepElement.classList.add('active');
+        }
+
+        // Mettre à jour la progression
+        this.updateProgress();
+
+        // Gérer les boutons de navigation
+        document.getElementById('btnPrev').style.display = this.currentStep > 1 ? 'block' : 'none';
+        document.getElementById('btnNext').style.display = this.currentStep < this.totalSteps ? 'block' : 'none';
+        document.getElementById('btnSubmit').style.display = this.currentStep === this.totalSteps ? 'block' : 'none';
+
+        // Mettre à jour le récapitulatif
+        if (this.currentStep === 4) {
+          this.updateSummary();
+        }
+      }
+
+      updateProgress() {
+        const progress = ((this.currentStep - 1) / (this.totalSteps - 1)) * 100;
+        document.getElementById('progressFill').style.width = progress + '%';
+
+        document.querySelectorAll('.progress-step').forEach(step => {
+          const stepNum = parseInt(step.dataset.step);
+          step.classList.remove('step-active', 'step-completed');
+          
+          if (stepNum === this.currentStep) {
+            step.classList.add('step-active');
+          } else if (stepNum < this.currentStep) {
+            step.classList.add('step-completed');
+          }
+        });
+      }
+
+      updateSummary() {
+        document.getElementById('recapNom').textContent = `${this.formData.prenom || ''} ${this.formData.nom || ''}`.trim();
+        document.getElementById('recapEmail').textContent = this.formData.email || '';
+        document.getElementById('recapTelephone').textContent = this.formData.telephone || '';
+        document.getElementById('recapTypeFormation').textContent = this.getLabel('typeFormation', this.formData.typeFormation);
+        document.getElementById('recapModules').textContent = this.getModulesLabels();
+        document.getElementById('recapEffectif').textContent = this.formData.effectif ? `${this.formData.effectif} personne(s)` : '';
+        document.getElementById('recapModalite').textContent = this.getLabel('modalite', this.formData.modalite);
+      }
+
+      getLabel(fieldName, value) {
+        const labels = {
+          typeFormation: {
+            'individuelle': 'Formation individuelle',
+            'groupe': 'Formation en groupe',
+            'entreprise': 'Formation en entreprise',
+            'sur-mesure': 'Formation sur-mesure'
+          },
+          modalite: {
+            'presentiel': 'Présentiel',
+            'distanciel': 'Distanciel',
+            'hybride': 'Hybride'
+          },
+          niveau: {
+            'debutant': 'Débutant',
+            'intermediaire': 'Intermédiaire',
+            'avance': 'Avancé',
+            'mixte': 'Niveaux mixte'
+          }
+        };
+        return labels[fieldName]?.[value] || value || 'Non spécifié';
+      }
+
+      getModulesLabels() {
+        const modules = this.formData.modules || [];
+        return Array.isArray(modules) ? modules.join(', ') : (modules || 'Aucun module sélectionné');
+      }
+
+      async submitForm() {
+        if (!this.validateStep(4)) return;
+
+        this.saveStepData(4);
+        
+        const btnSubmit = document.getElementById('btnSubmit');
+        const submitText = document.getElementById('submitText');
+        const submitLoading = document.getElementById('submitLoading');
+        
+        // Afficher l'animation de chargement
+        submitText.style.display = 'none';
+        submitLoading.style.display = 'inline-block';
+        btnSubmit.disabled = true;
+
+        try {
+          // Envoyer le message WhatsApp
+          await this.sendWhatsAppMessage();
+          
+          // Générer une référence
+          const reference = 'DEV' + Date.now().toString().slice(-6);
+          document.getElementById('referenceNumber').textContent = reference;
+          
+          // Passer à l'étape de succès
+          this.currentStep = 5;
+          this.updateUI();
+          
+        } catch (error) {
+          alert('Une erreur est survenue. Veuillez réessayer.');
+          console.error('Erreur:', error);
+        } finally {
+          submitText.style.display = 'inline-block';
+          submitLoading.style.display = 'none';
+          btnSubmit.disabled = false;
+        }
+      }
+
+      sendWhatsAppMessage() {
+        return new Promise((resolve) => {
+          // Formater le message pour WhatsApp
+          const message = this.formatWhatsAppMessage();
+          
+          // Encoder le message pour l'URL
+          const encodedMessage = encodeURIComponent(message);
+          
+          // REMPLACEZ CE NUMÉRO PAR VOTRE NUMÉRO WHATSAPP
+          // Format: +221701234567 (avec l'indicatif pays)
+          const yourWhatsappNumber = '+22654738428'; // ← À MODIFIER
+          
+          // Créer le lien WhatsApp
+          const whatsappUrl = `https://wa.me/${yourWhatsappNumber}?text=${encodedMessage}`;
+          
+          // Ouvrir WhatsApp dans un nouvel onglet
+          window.open(whatsappUrl, '_blank');
+          
+          // Simuler un délai d'envoi
+          setTimeout(resolve, 1000);
+        });
+      }
+
+      formatWhatsAppMessage() {
+        return `📋 NOUVELLE DEMANDE DE DEVIS - FORMATIONS OFFICE & IA
+
+👤 INFORMATIONS CLIENT:
+• Nom: ${this.formData.prenom || ''} ${this.formData.nom || ''}
+• Email: ${this.formData.email || ''}
+• Téléphone: ${this.formData.telephone || ''}
+• Entreprise: ${this.formData.entreprise || 'Non spécifié'}
+• Poste: ${this.formData.poste || 'Non spécifié'}
+
+🎯 BESOINS FORMATION:
+• Type: ${this.getLabel('typeFormation', this.formData.typeFormation)}
+• Modules: ${this.getModulesLabels()}
+• Niveau: ${this.getLabel('niveau', this.formData.niveau)}
+• Participants: ${this.formData.effectif || ''} personnes
+• Durée: ${this.formData.duree || ''} heures
+• Modalité: ${this.getLabel('modalite', this.formData.modalite)}
+
+📅 INFORMATIONS PRATIQUES:
+• Date souhaitée: ${this.formData.dateDebut || 'Non spécifié'}
+• Objectifs: ${this.formData.objectifs || 'Non spécifié'}
+• Commentaires: ${this.formData.commentaires || 'Aucun'}
+
+⏰ Demande reçue le: ${new Date().toLocaleString('fr-FR')}
+🔗 Référence: DEV${Date.now().toString().slice(-6)}`;
+      }
+
+      resetForm() {
+        // Réinitialiser le formulaire
+        document.querySelectorAll('input, select, textarea').forEach(field => {
+          if (field.type === 'checkbox' || field.type === 'radio') {
+            field.checked = false;
+          } else {
+            field.value = '';
+          }
+        });
+        
+        // Réinitialiser les données
+        this.formData = {};
+        this.currentStep = 1;
+        this.updateUI();
+      }
+    }
+
+    // Initialiser le formulaire quand la page est chargée
+    let devisForm;
+    document.addEventListener('DOMContentLoaded', function() {
+      devisForm = new DevisForm();
+    });
+
+    // Rendre la fonction resetForm accessible globalement
+    window.devisForm = {
+      resetForm: function() {
+        if (devisForm) {
+          devisForm.resetForm();
+        }
+      }
+    };
+  </script>
+</body>
+</html>
