@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formations — Pack Office & Intelligence Artificielle</title>
+  <meta name="description" content="Catalogue de formations Pack Office (Word, Excel, PowerPoint...) et Intelligence Artificielle (IA) — modules, programmes, niveaux et contact."/>
+  <style>
+    /* =====================
+       Design System
+    ====================== */
+    :root{
+      --bg: #0b1020;
+      --bg-soft: #11162a;
+      --surface: #0f1426;
+      --text: #e9eefb;
+      --muted: #a8b3cf;
+      --brand: #5b8cff;
+      --brand-2: #7f5bff;
+      --accent: #22d3ee;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --ring: rgba(91,140,255,.35);
+      --radius-xl: 22px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 10px;
+      --shadow-1: 0 10px 30px rgba(0,0,0,.35);
+      --shadow-2: 0 20px 50px rgba(34,51,84,.45);
+      --grid-max: 1200px;
+    }
+
+    /* Light mode (white background) */
+    .theme-light{
+      --bg: #ffffff;
+      --bg-soft: #f8f9fa;
+      --surface: #ffffff;
+      --text: #212529;
+      --muted: #6c757d;
+      --brand: #0d6efd;
+      --brand-2: #6610f2;
+      --accent: #0dcaf0;
+      --success: #198754;
+      --warning: #ffc107;
+      --danger: #dc3545;
+      --ring: rgba(13,110,253,.25);
+      --shadow-1: 0 10px 30px rgba(0,0,0,.1);
+      --shadow-2: 0 20px 50px rgba(0,0,0,.1);
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+        
+    .theme-dark body{
+      background: radial-gradient(1200px 600px at 70% -10%, rgba(127,91,255,.25), transparent 60%),
+                  radial-gradient(800px 500px at 20% -20%, rgba(34,211,238,.18), transparent 60%),
+                  var(--bg);
+    }
+
+    a{ color:var(--brand); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .container{ width:100%; max-width:var(--grid-max); margin:0 auto; padding:0 20px; }
+
+    /* Header */
+    header{ position:sticky; top:0; z-index:40; backdrop-filter: blur(8px); }
+    .theme-dark header{ background-color: rgba(11, 16, 32, 0.8); }
+    .theme-light header{ background-color: rgba(255, 255, 255, 0.8); }
+    
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:14px 0; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+   
+    .theme-light .nav{ border-bottom-color: rgba(0,0,0,.1); }
+    
+    .brand{ display:flex; align-items:center; gap:10px; }
+    .logo{ width:36px; height:36px; border-radius:12px; background:
+      conic-gradient(from 180deg, var(--brand), var(--brand-2), var(--accent), var(--brand));
+      box-shadow: 0 6px 20px rgba(127,91,255,.35);
+    }
+    .theme-light .logo{ box-shadow: 0 6px 20px rgba(13,110,253,.25); }
+    
+    .brand h1{ font-size:18px; margin:0; letter-spacing:.2px; }
+
+    .nav-links{ display:flex; gap:18px; align-items:center; }
+    .nav-links a{ padding:8px 12px; border-radius:10px; }
+    .theme-dark .nav-links a:hover{ background:rgba(255,255,255,.06); text-decoration:none; }
+    .theme-light .nav-links a:hover{ background:rgba(0,0,0,.05); text-decoration:none; }
+
+    .btn{ display:inline-flex; align-items:center; gap:10px; padding:10px 16px; border-radius:12px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:white; border:0; box-shadow: var(--shadow-1); cursor:pointer; font-weight:600; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 12px 28px var(--ring); }
+
+    .btn-ghost{ background:transparent; color:var(--text); }
+    .theme-dark .btn-ghost{ border:1px solid rgba(255,255,255,.12); }
+    .theme-light .btn-ghost{ border:1px solid rgba(0,0,0,.1); }
+
+    /* Hero */
+    .hero{ position:relative; padding:72px 0 52px; }
+    .hero-grid{ display:grid; gap:28px; grid-template-columns: 1.1fr .9fr; align-items:center; }
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.10); border-radius: var(--radius-xl); padding:28px; box-shadow: var(--shadow-2);
+    }
+    .theme-light .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.8));
+      border:1px solid rgba(0,0,0,.1);
+    }
+    
+    .eyebrow{ font-size:12px; letter-spacing:1.6px; text-transform:uppercase; color:var(--muted); }
+    .hero h2{ font-size:38px; line-height:1.1; margin:10px 0 14px; }
+    .subtitle{ color:var(--muted); margin:0 0 22px; }
+
+    .hero-stats{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:18px; }
+    .stat{ padding:14px; border:1px solid rgba(255,255,255,.10); border-radius:14px; background: rgba(255,255,255,.05); text-align:center; }
+    .theme-light .stat{ border:1px solid rgba(0,0,0,.1); background: rgba(0,0,0,.05); }
+    .stat b{ display:block; font-size:22px; }
+
+    .hero-showcase{ aspect-ratio: 16 / 11; border-radius: var(--radius-xl); overflow:hidden; border:1px solid rgba(255,255,255,.10); position:relative; }
+    .theme-light .hero-showcase{ border:1px solid rgba(0,0,0,.1); }
+    
+    .grid-cards{ position:absolute; inset:0; display:grid; grid-template-columns: repeat(6, 1fr); gap:10px; padding:10px; background: radial-gradient(800px 400px at 30% 0%, rgba(127,91,255,.18), transparent 40%); }
+    .theme-light .grid-cards{ background: rgba(0,0,0,.05); }
+    
+    .tile{ border-radius:14px; border:1px solid rgba(255,255,255,.12); background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); display:flex; flex-direction: column; align-items:center; justify-content:center; font-weight:600; padding: 10px; gap: 8px; }
+    .theme-light .tile{ border:1px solid rgba(0,0,0,.1); background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.7)); }
+    
+    .tile-icon { 
+      width: 90px; 
+      height: 90px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      font-size: 20px; 
+    }
+    
+    .tile-text { 
+      font-size: 12px; 
+      text-align: center; 
+      line-height: 1.2; 
+    }
+
+    /* Sections */
+    section{ padding:56px 0; }
+    .section-title{ font-size:28px; margin:0 0 8px; }
+    .section-desc{ color:var(--muted); margin:0 0 24px; }
+
+    /* Cards */
+    .cards{ display:grid; grid-template-columns: repeat(12, 1fr); gap:18px; }
+    .card{ grid-column: span 4; border-radius:16px; border:1px solid rgba(255,255,255,.10); background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); padding:20px; box-shadow: var(--shadow-1); display:flex; flex-direction:column; gap:12px; }
+    .theme-light .card{ border:1px solid rgba(0,0,0,.1); background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.8)); }
+    
+    .badge{ display:inline-flex; align-items:center; gap:8px; font-size:12px; background:rgba(127,91,255,.15); border:1px solid rgba(127,91,255,.35); color:#d8d6ff; padding:6px 10px; border-radius:999px; }
+    .theme-light .badge{ background:rgba(102,16,242,.15); border:1px solid rgba(102,16,242,.35); color:#7e57c2; }
+    
+    .card h3{ margin:6px 0 6px; font-size:20px; }
+    .meta{ color:var(--muted); font-size:14px; margin:0; }
+    .card ul{ margin:6px 0 0 18px; padding:0; }
+    .card li{ margin:6px 0; }
+    .card .cta{ margin-top:auto; display:flex; gap:10px; }
+
+    /* Tracks grid (Office vs IA) */
+    .tracks{ display:grid; grid-template-columns: repeat(2, 1fr); gap:22px; }
+    .track{ border-radius:20px; border:1px solid rgba(255,255,255,.10); padding:18px; background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); }
+    .theme-light .track{ border:1px solid rgba(0,0,0,.1); background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.8)); }
+    
+    .track h4{ margin:8px 0; font-size:18px; }
+    .track-list{ display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; margin-top:10px; }
+    .pill{ border:1px solid rgba(255,255,255,.14); border-radius:12px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center; }
+    .theme-light .pill{ border:1px solid rgba(0,0,0,.1); }
+    .lvl{ font-size:12px; color:var(--muted); }
+
+    /* Timeline */
+    .timeline{ position:relative; padding-left:20px; }
+    .timeline:before{ content:""; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:linear-gradient(var(--brand), transparent); }
+    .tl-item{ position:relative; padding-left:20px; margin:12px 0; }
+    .tl-item:before{ content:""; position:absolute; left:-2px; top:8px; width:10px; height:10px; border-radius:50%; background:var(--brand); box-shadow: 0 0 0 4px var(--ring); }
+
+    /* FAQ (CSS-only accordion) */
+    .faq{ display:grid; gap:12px; }
+    details{ border:1px solid rgba(255,255,255,.12); border-radius:14px; padding:14px 16px; background: rgba(255,255,255,.05); }
+    .theme-light details{ border:1px solid rgba(0,0,0,.1); background: rgba(0,0,0,.05); }
+    
+    summary{ cursor:pointer; font-weight:600; }
+    details[open]{ background: rgba(127,91,255,.08); }
+    .theme-light details[open]{ background: rgba(102,16,242,.08); }
+
+    /* Contact */
+    form{ display:grid; gap:12px; }
+    .field{ display:grid; gap:6px; }
+    .input{ padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); color:var(--text); outline:none; }
+    .theme-light .input{ border:1px solid rgba(0,0,0,.1); background: rgba(255,255,255,.8); }
+    
+    .input:focus{ border-color:var(--brand); box-shadow: 0 0 0 4px var(--ring); }
+    textarea.input{ min-height:120px; resize:vertical; }
+
+    /* Footer */
+    footer{ border-top: 1px solid rgba(255,255,255,.08); padding:28px 0; color:var(--muted); }
+    .theme-light footer{ border-top: 1px solid rgba(0,0,0,.1); }
+
+    /* Responsive */
+    @media (max-width: 1024px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .cards .card{ grid-column: span 6; }
+      .track-list{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px){
+      .cards .card{ grid-column: span 12; }
+      .tracks{ grid-template-columns: 1fr; }
+      .hero h2{ font-size:32px; }
+      .nav-links{ display:none; }
+      .tile-icon { width: 24px; height: 24px; font-size: 16px; }
+      .tile-text { font-size: 10px; }
+    }
+  </style>
+</head>
+<body class="theme-dark">
+  <!-- Hidden checkbox to allow CSS-only theme toggling -->
+  <input type="checkbox" id="themeToggle" class="theme-toggle" hidden>
+  <div class="page">
+    <header>
+      <div class="container nav">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <h1>Formations — Pack Office & IA</h1>
+        </div>
+        <nav class="nav-links" aria-label="Navigation principale">
+          <a href="catalogue.html">Catalogue</a>
+          <a href="#parcours">Parcours</a>
+          <a href="offre.html">Programme</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact" class="btn btn-ghost">Contact</a>
+        </nav>
+        <label for="themeToggle" class="btn btn-ghost" title="Basculer le thème" id="themeToggleLabel">🌗</label>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-card">
+            <div class="eyebrow">Formations certifiantes & ateliers</div>
+            <h2>Maîtrisez <em>Pack Office</em> & exploitez la puissance de l’<em>IA</em> au quotidien</h2>
+            <p class="subtitle">Des modules structurés, des exercices concrets, des supports téléchargeables et un accompagnement pas-à-pas pour particuliers, étudiants et entreprises.</p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn" href="#catalogue">Voir les modules</a>
+              <a class="btn btn-ghost" href="devis.html">Demander un devis</a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat"><b>+120</b><span>Apprenants formés</span></div>
+              <div class="stat"><b>95%</b><span>Satisfaction</span></div>
+              <div class="stat"><b>6</b><span>Parcours certifiants</span></div>
+            </div>
+          </div>
+
+          <div class="hero-showcase" aria-hidden="true">
+            <div class="grid-cards">
+              <div class="tile">
+                <div class="tile-icon"><svg xmlns="http://www.w3.org/2000/svg" x="10px" y="10px" width="200" height="200" viewBox="0 0 48 48">
+<path fill="#2196F3" d="M41,10H25v28h16c0.553,0,1-0.447,1-1V11C42,10.447,41.553,10,41,10z"></path><path fill="#FFF" d="M25 15.001H39V17H25zM25 19H39V21H25zM25 23.001H39V25.001H25zM25 27.001H39V29H25zM25 31H39V33.001H25z"></path><path fill="#0D47A1" d="M27 42L6 38 6 10 27 6z"></path><path fill="#FFF" d="M21.167,31.012H18.45l-1.802-8.988c-0.098-0.477-0.155-0.996-0.174-1.576h-0.032c-0.043,0.637-0.11,1.162-0.197,1.576l-1.85,8.988h-2.827l-2.86-14.014h2.675l1.536,9.328c0.062,0.404,0.111,0.938,0.143,1.607h0.042c0.019-0.498,0.098-1.051,0.223-1.645l1.97-9.291h2.622l1.785,9.404c0.062,0.348,0.119,0.846,0.17,1.511h0.031c0.02-0.515,0.073-1.035,0.16-1.563l1.503-9.352h2.468L21.167,31.012z"></path>
+</svg></div>
+                <div class="tile-text">Word</div>
+              </div>
+              <div class="tile">
+                <div class="tile-icon"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+<path fill="#169154" d="M29,6H15.744C14.781,6,14,6.781,14,7.744v7.259h15V6z"></path><path fill="#18482a" d="M14,33.054v7.202C14,41.219,14.781,42,15.743,42H29v-8.946H14z"></path><path fill="#0c8045" d="M14 15.003H29V24.005000000000003H14z"></path><path fill="#17472a" d="M14 24.005H29V33.055H14z"></path><g><path fill="#29c27f" d="M42.256,6H29v9.003h15V7.744C44,6.781,43.219,6,42.256,6z"></path><path fill="#27663f" d="M29,33.054V42h13.257C43.219,42,44,41.219,44,40.257v-7.202H29z"></path><path fill="#19ac65" d="M29 15.003H44V24.005000000000003H29z"></path><path fill="#129652" d="M29 24.005H44V33.055H29z"></path></g><path fill="#0c7238" d="M22.319,34H5.681C4.753,34,4,33.247,4,32.319V15.681C4,14.753,4.753,14,5.681,14h16.638 C23.247,14,24,14.753,24,15.681v16.638C24,33.247,23.247,34,22.319,34z"></path><path fill="#fff" d="M9.807 19L12.193 19 14.129 22.754 16.175 19 18.404 19 15.333 24 18.474 29 16.123 29 14.013 25.07 11.912 29 9.526 29 12.719 23.982z"></path>
+</svg></div>
+                <div class="tile-text">Excel</div>
+              </div>
+              <div class="tile">
+                <div class="tile-icon"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+<path fill="#dc4c2c" d="M8,24c0,9.941,8.059,18,18,18s18-8.059,18-18H26H8z"></path><path fill="#f7a278" d="M26,6v18h18C44,14.059,35.941,6,26,6z"></path><path fill="#c06346" d="M26,6C16.059,6,8,14.059,8,24h18V6z"></path><path fill="#9b341f" d="M22.319,34H5.681C4.753,34,4,33.247,4,32.319V15.681C4,14.753,4.753,14,5.681,14h16.638 C23.247,14,24,14.753,24,15.681v16.638C24,33.247,23.247,34,22.319,34z"></path><path fill="#fff" d="M14.673,19.012H10v10h2.024v-3.521H14.3c1.876,0,3.397-1.521,3.397-3.397v-0.058 C17.697,20.366,16.343,19.012,14.673,19.012z M15.57,22.358c0,0.859-0.697,1.556-1.556,1.556h-1.99v-3.325h1.99 c0.859,0,1.556,0.697,1.556,1.556V22.358z"></path>
+</svg></div>
+                <div class="tile-text">PowerPoint</div>
+              </div>
+              <div class="tile">
+                <div class="tile-icon"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+<path fill="#1a237e" d="M43.607,23.752l-7.162-4.172v11.594H44v-6.738C44,24.155,43.85,23.894,43.607,23.752z"></path><path fill="#0c4999" d="M33.919,8.84h9.046V7.732C42.965,6.775,42.19,6,41.234,6H17.667c-0.956,0-1.732,0.775-1.732,1.732 V8.84h9.005H33.919z"></path><path fill="#0f73d9" d="M33.919,33.522h7.314c0.956,0,1.732-0.775,1.732-1.732v-6.827h-9.046V33.522z"></path><path fill="#0f439d" d="M15.936,24.964v6.827c0,0.956,0.775,1.732,1.732,1.732h7.273v-8.558H15.936z"></path><path fill="#2ecdfd" d="M33.919 8.84H42.964999999999996V16.866999999999997H33.919z"></path><path fill="#1c5fb0" d="M15.936 8.84H24.941000000000003V16.866999999999997H15.936z"></path><path fill="#1467c7" d="M24.94 24.964H33.919V33.522H24.94z"></path><path fill="#1690d5" d="M24.94 8.84H33.919V16.866999999999997H24.94z"></path><path fill="#1bb4ff" d="M33.919 16.867H42.964999999999996V24.963H33.919z"></path><path fill="#074daf" d="M15.936 16.867H24.941000000000003V24.963H15.936z"></path><path fill="#2076d4" d="M24.94 16.867H33.919V24.963H24.94z"></path><path fill="#2ed0ff" d="M15.441,42c0.463,0,26.87,0,26.87,0C43.244,42,44,41.244,44,40.311V24.438 c0,0-0.03,0.658-1.751,1.617c-1.3,0.724-27.505,15.511-27.505,15.511S14.978,42,15.441,42z"></path><path fill="#139fe2" d="M42.279,41.997c-0.161,0-26.59,0.003-26.59,0.003C14.756,42,14,41.244,14,40.311V25.067 l29.363,16.562C43.118,41.825,42.807,41.997,42.279,41.997z"></path><path fill="#00488d" d="M22.319,34H5.681C4.753,34,4,33.247,4,32.319V15.681C4,14.753,4.753,14,5.681,14h16.638 C23.247,14,24,14.753,24,15.681v16.638C24,33.247,23.247,34,22.319,34z"></path><path fill="#fff" d="M13.914,18.734c-3.131,0-5.017,2.392-5.017,5.343c0,2.951,1.879,5.342,5.017,5.342 c3.139,0,5.017-2.392,5.017-5.342C18.931,21.126,17.045,18.734,13.914,18.734z M13.914,27.616c-1.776,0-2.838-1.584-2.838-3.539 s1.067-3.539,2.838-3.539c1.771,0,2.839,1.585,2.839,3.539S15.689,27.616,13.914,27.616z"></path>
+</svg></div>
+                <div class="tile-text">Outlook</div>
+              </div>
+              <div class="tile">
+                <div class="tile-icon"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+<path fill="#5059c9" d="M44,22v8c0,3.314-2.686,6-6,6s-6-2.686-6-6V20h10C43.105,20,44,20.895,44,22z M38,16	c2.209,0,4-1.791,4-4c0-2.209-1.791-4-4-4s-4,1.791-4,4C34,14.209,35.791,16,38,16z"></path><path fill="#7b83eb" d="M35,22v11c0,5.743-4.841,10.356-10.666,9.978C19.019,42.634,15,37.983,15,32.657V20h18	C34.105,20,35,20.895,35,22z M25,17c3.314,0,6-2.686,6-6s-2.686-6-6-6s-6,2.686-6,6S21.686,17,25,17z"></path><circle cx="25" cy="11" r="6" fill="#7b83eb"></circle><path d="M26,33.319V20H15v12.657c0,1.534,0.343,3.008,0.944,4.343h6.374C24.352,37,26,35.352,26,33.319z" opacity=".05"></path><path d="M15,20v12.657c0,1.16,0.201,2.284,0.554,3.343h6.658c1.724,0,3.121-1.397,3.121-3.121V20H15z" opacity=".07"></path><path d="M24.667,20H15v12.657c0,0.802,0.101,1.584,0.274,2.343h6.832c1.414,0,2.56-1.146,2.56-2.56V20z" opacity=".09"></path><linearGradient id="DqqEodsTc8fO7iIkpib~Na_zQ92KI7XjZgR_gr1" x1="4.648" x2="23.403" y1="14.648" y2="33.403" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5961c3"></stop><stop offset="1" stop-color="#3a41ac"></stop></linearGradient><path fill="url(#DqqEodsTc8fO7iIkpib~Na_zQ92KI7XjZgR_gr1)" d="M22,34H6c-1.105,0-2-0.895-2-2V16c0-1.105,0.895-2,2-2h16c1.105,0,2,0.895,2,2v16	C24,33.105,23.105,34,22,34z"></path><path fill="#fff" d="M18.068,18.999H9.932v1.72h3.047v8.28h2.042v-8.28h3.047V18.999z"></path>
+</svg></div>
+                <div class="tile-text">Teams</div>
+              </div>
+              <div class="tile">
+                <div class="tile-icon"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+<linearGradient id="e4t2Q3zu0NW9dfIUK4ZJaa_yTtdbCPCXVuI_gr1" x1="12" x2="44" y1="24" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#c965eb"></stop><stop offset="1" stop-color="#c767e5"></stop></linearGradient><path fill="url(#e4t2Q3zu0NW9dfIUK4ZJaa_yTtdbCPCXVuI_gr1)" d="M42,6H14c-1.105,0-2,0.895-2,2v32c0,1.105,0.895,2,2,2h21V15.003h9V8C44,6.895,43.105,6,42,6z"></path><linearGradient id="e4t2Q3zu0NW9dfIUK4ZJab_yTtdbCPCXVuI_gr2" x1="39.5" x2="39.5" y1="42" y2="33.054" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#7819a2"></stop><stop offset="1" stop-color="#771aa9"></stop></linearGradient><path fill="url(#e4t2Q3zu0NW9dfIUK4ZJab_yTtdbCPCXVuI_gr2)" d="M35,33.054V42h7c1.105,0,2-0.895,2-2v-6.945L35,33.054L35,33.054z"></path><linearGradient id="e4t2Q3zu0NW9dfIUK4ZJac_yTtdbCPCXVuI_gr3" x1="35" x2="44" y1="19.504" y2="19.504" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ae4cd5"></stop><stop offset="1" stop-color="#ac4ad5"></stop></linearGradient><path fill="url(#e4t2Q3zu0NW9dfIUK4ZJac_yTtdbCPCXVuI_gr3)" d="M35,15.003h9v9.002h-9V15.003z"></path><linearGradient id="e4t2Q3zu0NW9dfIUK4ZJad_yTtdbCPCXVuI_gr4" x1="35" x2="44" y1="28.53" y2="28.53" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#912fbd"></stop><stop offset="1" stop-color="#9332bf"></stop></linearGradient><path fill="url(#e4t2Q3zu0NW9dfIUK4ZJad_yTtdbCPCXVuI_gr4)" d="M35,24.005h9v9.05h-9V24.005z"></path><path d="M22.319,13H12v24h10.319C24.352,37,26,35.352,26,33.319V16.681C26,14.648,24.352,13,22.319,13z" opacity=".05"></path><path d="M22.213,36H12V13.333h10.213c1.724,0,3.121,1.397,3.121,3.121v16.425	C25.333,34.603,23.936,36,22.213,36z" opacity=".07"></path><path d="M22.106,35H12V13.667h10.106c1.414,0,2.56,1.146,2.56,2.56V32.44C24.667,33.854,23.52,35,22.106,35z" opacity=".09"></path><linearGradient id="e4t2Q3zu0NW9dfIUK4ZJae_yTtdbCPCXVuI_gr5" x1="4.586" x2="23.414" y1="14.586" y2="33.414" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#8521b0"></stop><stop offset="1" stop-color="#64129a"></stop></linearGradient><path fill="url(#e4t2Q3zu0NW9dfIUK4ZJae_yTtdbCPCXVuI_gr5)" d="M22,34H6c-1.105,0-2-0.895-2-2V16c0-1.105,0.895-2,2-2h16c1.105,0,2,0.895,2,2v16	C24,33.105,23.105,34,22,34z"></path><path fill="#fff" d="M16.501,19v7.393L11.779,19H9.59v10h1.909v-7.45L16.258,29h2.152V19H16.501z"></path>
+</svg></div>
+                <div class="tile-text">OneNote</div>
+              </div>
+              <div class="tile">
+                <div class="tile-icon"><!-- ai-chip.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="400" height="400" aria-labelledby="title desc" role="img">
+  <title id="title">Icône Intelligence Artificielle</title>
+  <desc id="desc">Illustration stylisée d'un micro-circuit représentant l'intelligence artificielle.</desc>
+
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#5b8cff"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#0b1220" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- fond circulaire -->
+  <circle cx="100" cy="100" r="96" fill="#ffffff" stroke="#e6eefc" stroke-width="2"/>
+
+  <!-- chip (centre) -->
+  <rect x="64" y="64" width="72" height="72" rx="12" ry="12" fill="url(#g1)" filter="url(#shadow)"/>
+
+  <!-- pattern central (stylized neural lines) -->
+  <g stroke="#fff" stroke-opacity="0.95" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" fill="none">
+    <path d="M88 82 C94 88, 106 88, 112 82" />
+    <path d="M88 118 C94 112, 106 112, 112 118" />
+    <path d="M100 80 L100 120" stroke-width="2.5"/>
+    <circle cx="100" cy="98" r="4" fill="#fff" stroke="none"/>
+  </g>
+
+  <!-- pattes / connexions (top, bottom, left, right and diagonals) -->
+  <g stroke="#8aa9ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- top -->
+    <path d="M96 60 L96 40" />
+    <circle cx="96" cy="36" r="4" fill="#fff"/>
+    <path d="M104 60 L104 40" />
+    <circle cx="104" cy="36" r="4" fill="#fff"/>
+
+    <!-- bottom -->
+    <path d="M96 140 L96 160" />
+    <circle cx="96" cy="164" r="4" fill="#fff"/>
+    <path d="M104 140 L104 160" />
+    <circle cx="104" cy="164" r="4" fill="#fff"/>
+
+    <!-- left -->
+    <path d="M60 96 L40 96" />
+    <circle cx="36" cy="96" r="4" fill="#fff"/>
+    <path d="M60 104 L40 104" />
+    <circle cx="36" cy="104" r="4" fill="#fff"/>
+
+    <!-- right -->
+    <path d="M140 96 L160 96" />
+    <circle cx="164" cy="96" r="4" fill="#fff"/>
+    <path d="M140 104 L160 104" />
+    <circle cx="164" cy="104" r="4" fill="#fff"/>
+
+    <!-- diagonals -->
+    <path d="M74 74 L58 58" />
+    <circle cx="54" cy="54" r="3.5" fill="#fff"/>
+    <path d="M126 74 L142 58" />
+    <circle cx="146" cy="54" r="3.5" fill="#fff"/>
+
+    <path d="M74 126 L58 142" />
+    <circle cx="54" cy="146" r="3.5" fill="#fff"/>
+    <path d="M126 126 L142 142" />
+    <circle cx="146" cy="146" r="3.5" fill="#fff"/>
+  </g>
+
+  <!-- petit label IA -->
+  <text x="100" y="188" font-family="Segoe UI, Roboto, Arial" font-size="12" text-anchor="middle" fill="#6b7fae">INTELLIGENCE ARTIFICIELLE</text>
+</svg>
+</div>
+                <div class="tile-text">IA — Bases</div>
+              </div>
+              <div class="tile">
+                <div class="tile-icon"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+<path fill="#90a4ae" d="M34.85,25L33,40h-5v-8H10l-2,8H3l2.7-20.52C6.45,14.6,10.64,11,15.58,11h12.09l-0.74,4.78 c-0.35,2.31,0.32,4.66,1.84,6.43C30.29,23.98,32.5,25,34.84,25H34.85z"></path><path fill="#90a4ae" d="M42.639 33.848l2.475-19.088C45.58 11.731 43.236 9 40.172 9H30l-1.09 7.088C28.35 19.722 31.163 23 34.84 23H38v11c0 2.209 1.791 4 4 4h3v-3h-1.373C43.014 35 42.546 34.454 42.639 33.848zM10 40L14.5 40 16.5 34 11.5 34z"></path>
+</svg></div>
+                <div class="tile-text">Prompting</div>
+              </div>
+              <div class="tile">
+                <div class="tile-icon"><svg class="chart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <!-- Fond du graphique -->
+                <rect x="10" y="10" width="80" height="80" fill="#f8f9fa" opacity="0.2" rx="5" ry="5"/>
+                
+                <!-- Lignes de grille -->
+                <line x1="10" y1="30" x2="90" y2="30" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+                <line x1="10" y1="50" x2="90" y2="50" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+                <line x1="10" y1="70" x2="90" y2="70" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+                
+                <!-- Ligne de croissance -->
+                <polyline points="25,70 40,50 55,30 70,40 85,20" 
+                         fill="none" 
+                         stroke="#4CAF50" 
+                         stroke-width="4" 
+                         stroke-linejoin="round" 
+                         stroke-linecap="round"
+                         id="trend-line">
+                    <animate attributeName="stroke-dasharray" values="0,500;500,0" dur="1.5s" fill="freeze" begin="0.5s"/>
+                    <animate attributeName="stroke-dashoffset" values="500;0" dur="1.5s" fill="freeze" begin="0.5s"/>
+                </polyline>
+                
+                <!-- Points de données -->
+                <circle cx="25" cy="70" r="3" fill="#4CAF50">
+                    <animate attributeName="r" values="0;3" dur="0.5s" fill="freeze" begin="1s"/>
+                </circle>
+                <circle cx="40" cy="50" r="3" fill="#4CAF50">
+                    <animate attributeName="r" values="0;3" dur="0.5s" fill="freeze" begin="1.2s"/>
+                </circle>
+                <circle cx="55" cy="30" r="3" fill="#4CAF50">
+                    <animate attributeName="r" values="0;3" dur="0.5s" fill="freeze" begin="1.4s"/>
+                </circle>
+                <circle cx="70" cy="40" r="3" fill="#4CAF50">
+                    <animate attributeName="r" values="0;3" dur="0.5s" fill="freeze" begin="1.6s"/>
+                </circle>
+                <circle cx="85" cy="20" r="3" fill="#4CAF50">
+                    <animate attributeName="r" values="0;3" dur="0.5s" fill="freeze" begin="1.8s"/>
+                </circle>
+                
+                <!-- Flèche vers le haut -->
+                <path d="M50,5 L45,15 L55,15 Z" fill="#4CAF50">
+                    <animateTransform attributeName="transform" type="translate" values="0,-10;0,0" dur="0.5s" fill="freeze" begin="2s"/>
+                </path>
+            </svg></div>
+                <div class="tile-text">IA & Données</div>
+              </div>
+              <div class="tile">
+                <div class="tile-icon"> <svg width="100" height="100" viewBox="0 0 100 100">
+            <!-- Engrenage central -->
+            <circle cx="50" cy="50" r="15" fill="#666" />
+            <circle cx="50" cy="50" r="5" fill="#fff" />
+            
+            <!-- Dents de l'engrenage -->
+            <path d="M50,30 L50,20 L55,20 L55,30 Z" fill="#666" />
+            <path d="M70,50 L80,50 L80,55 L70,55 Z" fill="#666" />
+            <path d="M50,70 L50,80 L55,80 L55,70 Z" fill="#666" />
+            <path d="M30,50 L20,50 L20,55 L30,55 Z" fill="#666" />
+            
+            <!-- Dents diagonales -->
+            <path d="M62,38 L69,31 L72,34 L65,41 Z" fill="#666" />
+            <path d="M62,62 L69,69 L72,66 L65,59 Z" fill="#666" />
+            <path d="M38,62 L31,69 L28,66 L35,59 Z" fill="#666" />
+            <path d="M38,38 L31,31 L28,34 L35,41 Z" fill="#666" />
+            
+            <!-- Cercle extérieur -->
+            <circle cx="50" cy="50" r="35" fill="none" stroke="#666" stroke-width="2" />
+        </svg></div>
+                <div class="tile-text">Automations</div>
+              </div>
+              <div class="tile">
+                <div class="tile-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Corps du robot -->
+  <rect x="25" y="30" width="50" height="45" rx="5" fill="#78909C" />
+  
+  <!-- Tête du robot -->
+  <rect x="30" y="10" width="40" height="25" rx="5" fill="#90A4AE" />
+  
+  <!-- Antenne -->
+  <circle cx="50" cy="5" r="3" fill="#4FC3F7" />
+  
+  <!-- Yeux -->
+  <circle cx="38" cy="20" r="4" fill="#F5F5F5" />
+  <circle cx="62" cy="20" r="4" fill="#F5F5F5" />
+  <circle cx="38" cy="20" r="2" fill="#37474F" />
+  <circle cx="62" cy="20" r="2" fill="#37474F" />
+  
+  <!-- Bouche -->
+  <rect x="40" cy="28" y="27" width="20" height="3" rx="1.5" fill="#37474F" />
+  
+  <!-- Boutons sur le torse -->
+  <circle cx="35" cy="45" r="3" fill="#E57373" />
+  <circle cx="50" cy="45" r="3" fill="#FFF176" />
+  <circle cx="65" cy="45" r="3" fill="#81C784" />
+  
+  <!-- Bras -->
+  <rect x="15" y="35" width="10" height="25" rx="3" fill="#90A4AE" />
+  <rect x="75" y="35" width="10" height="25" rx="3" fill="#90A4AE" />
+  
+  <!-- Mains -->
+  <rect x="10" y="55" width="15" height="5" rx="2" fill="#78909C" />
+  <rect x="75" y="55" width="15" height="5" rx="2" fill="#78909C" />
+  
+  <!-- Jambes -->
+  <rect x="30" y="75" width="15" height="15" rx="3" fill="#90A4AE" />
+  <rect x="55" y="75" width="15" height="15" rx="3" fill="#90A4AE" />
+</svg></div>
+                <div class="tile-text">Chatbots</div>
+              </div>
+              <div class="tile">
+                <div class="tile-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Support -->
+  <rect x="47" y="20" width="6" height="40" fill="#8D6E63" />
+  
+  <!-- Base -->
+  <rect x="35" y="60" width="30" height="5" fill="#8D6E63" />
+  
+  <!-- Barre de balance -->
+  <rect x="10" y="25" width="80" height="4" rx="2" fill="#6D4C41" />
+  
+  <!-- Chaînes de gauche -->
+  <line x1="30" y1="25" x2="25" y2="40" stroke="#6D4C41" stroke-width="2" />
+  <line x1="30" y1="25" x2="35" y2="40" stroke="#6D4C41" stroke-width="2" />
+  
+  <!-- Chaînes de droite -->
+  <line x1="70" y1="25" x2="65" y2="40" stroke="#6D4C41" stroke-width="2" />
+  <line x1="70" y1="25" x2="75" y2="40" stroke="#6D4C41" stroke-width="2" />
+  
+  <!-- Plateaux -->
+  <circle cx="30" cy="45" r="12" fill="#BCAAA4" stroke="#8D6E63" stroke-width="2" />
+  <circle cx="70" cy="45" r="12" fill="#BCAAA4" stroke="#8D6E63" stroke-width="2" />
+  
+  <!-- Poids gauche -->
+  <rect x="20" y="50" width="20" height="15" rx="3" fill="#78909C" />
+  
+  <!-- Poids droit -->
+  <rect x="60" y="50" width="20" height="15" rx="3" fill="#78909C" />
+  
+  <!-- Détails sur les poids -->
+  <line x1="25" y1="55" x2="35" y2="55" stroke="#ECEFF1" stroke-width="1.5" />
+  <line x1="65" y1="55" x2="75" y2="55" stroke="#ECEFF1" stroke-width="1.5" />
+  <line x1="25" y1="60" x2="35" y2="60" stroke="#ECEFF1" stroke-width="1.5" />
+  <line x1="65" y1="60" x2="75" y2="60" stroke="#ECEFF1" stroke-width="1.5" />
+</svg></div>
+                <div class="tile-text">Éthique IA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATALOGUE -->
+      <section id="catalogue" class="container">
+        <h2 class="section-title">Catalogue des modules</h2>
+        <p class="section-desc">Choisissez votre niveau et avancez à votre rythme. Chaque module inclut des supports, des cas pratiques et une évaluation.</p>
+        <div class="cards">
+          <article class="card" aria-labelledby="m-word">
+            <span class="badge">Pack Office</span>
+            <h3 id="m-word">Word — de zéro à pro</h3>
+            <p class="meta">Styles, sommaires automatiques, publipostage, modèles, macros simples.</p>
+            <ul>
+              <li>Niveaux : Débutant → Avancé</li>
+              <li>Durée : 6 à 12 h</li>
+              <li>Livrables : modèles & checklists</li>
+            </ul>
+            <div class="cta">
+              <a class="btn" href="devis.html">S’inscrire</a>
+              <a class="btn btn-ghost" href="#programme">Voir le programme</a>
+            </div>
+          </article>
+
+          <article class="card" aria-labelledby="m-excel">
+            <span class="badge">Pack Office</span>
+            <h3 id="m-excel">Excel — analyse & tableaux de bord</h3>
+            <p class="meta">Fonctions, TCD, Power Query, graphiques dynamiques, introduction à Power Pivot.</p>
+            <ul>
+              <li>Niveaux : Débutant → Expert</li>
+              <li>Durée : 8 à 20 h</li>
+              <li>Livrables : fichiers d’exercices</li>
+            </ul>
+            <div class="cta">
+              <a class="btn" href="devis.html">S’inscrire</a>
+              <a class="btn btn-ghost" href="#programme">Voir le programme</a>
+            </div>
+          </article>
+
+          <article class="card" aria-labelledby="m-ppt">
+            <span class="badge">Pack Office</span>
+            <h3 id="m-ppt">PowerPoint — storytelling & design</h3>
+            <p class="meta">Masques, grilles, animation propre, pitch deck, présentations percutantes.</p>
+            <ul>
+              <li>Niveaux : Tous niveaux</li>
+              <li>Durée : 6 à 10 h</li>
+              <li>Livrables : thèmes & templates</li>
+            </ul>
+            <div class="cta">
+              <a class="btn" href="devis.html">S’inscrire</a>
+              <a class="btn btn-ghost" href="#programme">Voir le programme</a>
+            </div>
+          </article>
+
+          <article class="card" aria-labelledby="m-ia-base">
+            <span class="badge">IA</span>
+            <h3 id="m-ia-base">IA — fondamentaux & usages concrets</h3>
+            <p class="meta">Comprendre les modèles, limites, sécurité, cas d’usage en bureautique et business.</p>
+            <ul>
+              <li>Niveaux : Initiation</li>
+              <li>Durée : 4 à 8 h</li>
+              <li>Livrables : fiches mémo</li>
+            </ul>
+            <div class="cta">
+              <a class="btn" href="devis.html">S’inscrire</a>
+              <a class="btn btn-ghost" href="#programme">Voir le programme</a>
+            </div>
+          </article>
+
+          <article class="card" aria-labelledby="m-prompt">
+            <span class="badge">IA</span>
+            <h3 id="m-prompt">Prompt engineering — productivité</h3>
+            <p class="meta">Techniques de prompts, structuration, itérations, décrochage de tâches complexes.</p>
+            <ul>
+              <li>Niveaux : Débutant → Intermédiaire</li>
+              <li>Durée : 4 à 8 h</li>
+              <li>Livrables : bibliothèque de prompts</li>
+            </ul>
+            <div class="cta">
+              <a class="btn" href="devis.html">S’inscrire</a>
+              <a class="btn btn-ghost" href="#programme">Voir le programme</a>
+            </div>
+          </article>
+
+          <article class="card" aria-labelledby="m-ia-excel">
+            <span class="badge">IA + Excel</span>
+            <h3 id="m-ia-excel">IA pour Excel — analyse augmentée</h3>
+            <p class="meta">Nettoyage, synthèse, genération d’insights, idées de graphiques, documentation.</p>
+            <ul>
+              <li>Niveaux : Intermédiaire</li>
+              <li>Durée : 6 à 10 h</li>
+              <li>Livrables : notebooks & cas</li>
+            </ul>
+            <div class="cta">
+              <a class="btn" href="devis.html">S’inscrire</a>
+              <a class="btn btn-ghost" href="#programme">Voir le programme</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- PARCOURS / TRACKS -->
+      <section id="parcours" class="container">
+        <h2 class="section-title">Parcours recommandés</h2>
+        <p class="section-desc">Construisez votre chemin d’apprentissage avec des blocs cohérents. Certifications possibles en fin de parcours.</p>
+        <div class="tracks">
+          <div class="track">
+            <span class="badge">Pack Office</span>
+            <h4>Parcours Bureautique Essentiel (18 h)</h4>
+            <div class="track-list">
+              <div class="pill"><span>Word — Fondamentaux</span><span class="lvl">Débutant</span></div>
+              <div class="pill"><span>Excel — Base & TCD</span><span class="lvl">Débutant</span></div>
+              <div class="pill"><span>PowerPoint — Design</span><span class="lvl">Tous</span></div>
+              <div class="pill"><span>Outlook & Teams</span><span class="lvl">Tous</span></div>
+            </div>
+          </div>
+          <div class="track">
+            <span class="badge">IA</span>
+            <h4>Parcours IA Productivité (14 h)</h4>
+            <div class="track-list">
+              <div class="pill"><span>IA — Notions clés</span><span class="lvl">Initiation</span></div>
+              <div class="pill"><span>Prompt engineering</span><span class="lvl">Intermédiaire</span></div>
+              <div class="pill"><span>Automatisations no-code</span><span class="lvl">Intermédiaire</span></div>
+              <div class="pill"><span>Chatbots & éthique</span><span class="lvl">Tous</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROGRAMME (Timeline) -->
+      <section id="programme" class="container">
+        <h2 class="section-title">Programme type d’une session</h2>
+        <p class="section-desc">Un déroulé adaptable selon le niveau, le public et les objectifs de l’organisation.</p>
+        <div class="timeline">
+          <div class="tl-item"><strong>Accueil & objectifs</strong> — recueil des attentes, test de niveau, installation des supports.</div>
+          <div class="tl-item"><strong>Module 1</strong> — notions clés, bonnes pratiques, démonstrations guidées.</div>
+          <div class="tl-item"><strong>Atelier pratique</strong> — cas réels, fichiers d’exercice, feedback immédiat.</div>
+          <div class="tl-item"><strong>Module 2</strong> — approfondissement, astuces pro, raccourcis, automatisation.</div>
+          <div class="tl-item"><strong>Évaluation & certification</strong> — quiz, mini-projet, attestations.</div>
+          <div class="tl-item"><strong>Suivi post-formation</strong> — ressources, Q/R, coaching optionnel.</div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="container">
+        <h2 class="section-title">FAQ</h2>
+        <p class="section-desc">Questions fréquentes sur les modalités, les niveaux et les supports.</p>
+        <div class="faq">
+          <details>
+            <summary>Les formations sont-elles adaptées aux débutants&nbsp;?</summary>
+            <p>Oui. Chaque module existe en plusieurs niveaux. Un test de positionnement permet d’entrer au bon endroit.</p>
+          </details>
+          <details>
+            <summary>Proposez-vous des formations en entreprise&nbsp;?</summary>
+            <p>Oui, en intra (sur site) ou à distance. Les contenus sont personnalisés selon vos outils et cas d’usage.</p>
+          </details>
+          <details>
+            <summary>Y a-t-il des supports et des replays&nbsp;?</summary>
+            <p>Des supports PDF, des fichiers d’exercices et des modèles sont fournis. Les replays sont disponibles sur demande.</p>
+          </details>
+          <details>
+            <summary>Comment obtenir un devis&nbsp;?</summary>
+            <p>Utilisez le formulaire de contact ci-dessous avec vos besoins (modules, effectif, dates) — une proposition vous sera envoyée.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact via WhatsApp</h2>
+    <p class="section-desc">Choisissez le module qui vous intéresse et contactez-nous directement :</p>
+
+    <!-- Champ pour le nom -->
+    <div class="field">
+      <label for="name">Votre Nom</label>
+      <input type="text" id="name" class="input" placeholder="Ex: Jean Dupont">
+    </div>
+
+    <!-- Liste des modules -->
+    <div class="field">
+      <label for="module">Modules souhaités</label>
+      <select id="module" class="input">
+        <option value="Pack Office">Pack Office</option>
+        <option value="Intelligence Artificielle">Intelligence Artificielle</option>
+        <option value="Cybersécurité">Cybersécurité</option>
+        <option value="Développement Web">Développement Web</option>
+      </select>
+    </div>
+
+    <!-- Bouton WhatsApp -->
+    <button class="btn" onclick="sendWhatsAppMessage()">📩 Contacter sur WhatsApp</button>
+  </div>
+</section>
+    </main>
+
+    <footer>
+      <div class="container" style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+        <div>© <span id="year"></span> Formations Pack Office & IA — Tous droits réservés.</div>
+        <div>Ouagadougou, Burkina Faso · <a href="https://wa.me/22654738428">Me contacter</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Script pour l’année dynamique
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Script pour le basculement de thème
+    const themeToggle = document.getElementById('themeToggle');
+    const themeToggleLabel = document.getElementById('themeToggleLabel');
+    const body = document.body;
+    
+    themeToggle.addEventListener('change', function() {
+      if (this.checked) {
+        body.classList.remove('theme-dark');
+        body.classList.add('theme-light');
+        themeToggleLabel.textContent = '🌞';
+      } else {
+        body.classList.remove('theme-light');
+        body.classList.add('theme-dark');
+        themeToggleLabel.textContent = '🌙';
+      }
+    });
+  </script>
+  
+<script>
+  function sendWhatsAppMessage() {
+    const name = document.getElementById("name").value.trim();
+    const module = document.getElementById("module").value;
+
+    const baseUrl = "https://wa.me/22654738428";
+    let message = `Bonjour, je suis ${name || "un visiteur"} et je souhaite avoir des informations sur le module "${module}".`;
+
+    // Encodage du message pour l'URL
+    const url = `${baseUrl}?text=${encodeURIComponent(message)}`;
+
+    // Ouvrir WhatsApp
+    window.open(url, "_blank");
+  }
+</script>
+</body>
+</html>
